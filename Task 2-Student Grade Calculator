@@ -1,0 +1,68 @@
+import java.util.*;
+class GradeCalculator{
+    public String name;
+    public int n;
+    public int marks[]=new int[10];
+    public int studentSum;
+    public float avg;
+    public double per;
+    Scanner sc = new Scanner(System.in);
+    public GradeCalculator(){
+        System.out.println("Enter the name of student");
+        this.name=sc.nextLine();
+    }
+    public int inputNoOfSubjects()
+    {
+        System.out.println("Enter number of subjects(not more than 10)");
+        this.n=sc.nextInt();
+        return n;
+    }
+    public void setMarks()
+    {
+        System.out.println("enter marks out of 100");
+        for(int i=0;i<=n;i++)
+        {
+            marks[i]=sc.nextInt();
+            System.out.println("Marks of subject "+(i+1)+":"+marks[i]);
+            studentSum=studentSum+marks[i];
+        }
+    }
+    public float calculateAverage()
+    {
+        avg= (float)studentSum/n;
+        return avg;
+    }
+    public double CalculatePercentage()
+    {
+        int total=n*100;
+        per = (studentSum*100)/total;
+        return per;
+    }
+    public void Grade(){
+        if(per>80 && per<=100){
+            System.out.println("GRADE : A");
+        }
+        else if(per>60 && per<=80){
+            System.out.println("GRADE : B");
+        }
+        else if(per>40 && per<=60){
+            System.out.println("GRADE : C");
+        }
+        else{
+            System.out.println("Fail");
+        }
+    }
+}
+public class Student {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        GradeCalculator g = new GradeCalculator();
+        g.inputNoOfSubjects();
+        g.setMarks();
+        float calavg=g.calculateAverage();
+        System.out.println("Your average is = "+calavg);
+        double calper = g.CalculatePercentage();
+        System.out.println("Your percentage is = "+calper);
+        g.Grade();
+    }
+}
